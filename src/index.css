@@ -1,0 +1,376 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Rajdhani", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Share Tech Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: "Orbitron", sans-serif;
+
+  --color-cyber-bg: var(--cyber-bg);
+  --color-cyber-card: var(--cyber-card);
+  --color-cyber-border: var(--cyber-border);
+  --color-cyber-text: var(--cyber-text);
+  --color-cyber-muted: var(--cyber-muted);
+  
+  --color-ai-cyan: var(--ai-cyan);
+  --color-ai-blue: var(--ai-blue);
+  --color-hack-green: var(--hack-green);
+  --color-hack-poison: var(--hack-poison);
+  --color-accent-purple: var(--accent-purple);
+  --color-accent-violet: var(--accent-violet);
+  
+  --animate-scanline: scanline 8s linear infinite;
+  --animate-glitch: glitch 1s linear infinite;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes glitch {
+  0% { text-shadow: 0.05em 0 0 rgba(255,0,0,.75), -0.05em -0.025em 0 rgba(0,255,0,.75), 0.025em 0.05em 0 rgba(0,0,255,.75); }
+  14% { text-shadow: 0.05em 0 0 rgba(255,0,0,.75), -0.05em -0.025em 0 rgba(0,255,0,.75), 0.025em 0.05em 0 rgba(0,0,255,.75); }
+  15% { text-shadow: -0.05em -0.025em 0 rgba(255,0,0,.75), 0.025em 0.025em 0 rgba(0,255,0,.75), -0.05em -0.05em 0 rgba(0,0,255,.75); }
+  49% { text-shadow: -0.05em -0.025em 0 rgba(255,0,0,.75), 0.025em 0.025em 0 rgba(0,255,0,.75), -0.05em -0.05em 0 rgba(0,0,255,.75); }
+  50% { text-shadow: 0.025em 0.05em 0 rgba(255,0,0,.75), -0.025em 0.05em 0 rgba(0,255,0,.75), 0.05em -0.05em 0 rgba(0,0,255,.75); }
+  99% { text-shadow: 0.025em 0.05em 0 rgba(255,0,0,.75), -0.025em 0.05em 0 rgba(0,255,0,.75), 0.05em -0.05em 0 rgba(0,0,255,.75); }
+  100% { text-shadow: -0.025em 0 0 rgba(255,0,0,.75), -0.025em -0.025em 0 rgba(0,255,0,.75), -0.025em -0.05em 0 rgba(0,0,255,.75); }
+}
+
+/* Theme variables declaration */
+:root, .light-mode-active {
+  --cyber-bg: #f8fafd;
+  --cyber-card: #ffffff;
+  --cyber-border: #cbd5e1;
+  --cyber-text: #0f172a;
+  --cyber-muted: #475569;
+  
+  --ai-cyan: #0284c7;
+  --ai-blue: #1d4ed8;
+  --hack-green: #047857;
+  --hack-poison: #059669;
+  --accent-purple: #6d28d9;
+  --accent-violet: #5b21b6;
+}
+
+.dark-mode {
+  --cyber-bg: #020205;
+  --cyber-card: #05050a;
+  --cyber-border: #1a1a2e;
+  --cyber-text: #ffffff;
+  --cyber-muted: #94a3b8;
+  
+  --ai-cyan: #00f5ff;
+  --ai-blue: #0066ff;
+  --hack-green: #00ff41;
+  --hack-poison: #39ff14;
+  --accent-purple: #8b00ff;
+  --accent-violet: #6600cc;
+}
+
+/* Custom CSS utilities for shadows, glows and grid backdrops */
+.neon-shadow-cyan {
+  box-shadow: 0 0 15px rgba(0, 245, 255, 0.15), inset 0 0 10px rgba(0, 245, 255, 0.05);
+  border-color: var(--cyber-border);
+}
+.neon-shadow-green {
+  box-shadow: 0 0 15px rgba(57, 255, 20, 0.15), inset 0 0 10px rgba(57, 255, 20, 0.05);
+  border-color: var(--cyber-border);
+}
+.neon-shadow-purple {
+  box-shadow: 0 0 15px rgba(139, 0, 255, 0.15), inset 0 0 10px rgba(139, 0, 255, 0.05);
+  border-color: var(--cyber-border);
+}
+
+.text-glow-cyan {
+  text-shadow: 0 0 3px rgba(0, 245, 255, 0.75), 0 0 1px rgba(0, 245, 255, 0.4);
+}
+.text-glow-green {
+  text-shadow: 0 0 3px rgba(57, 255, 20, 0.75), 0 0 1px rgba(57, 255, 20, 0.4);
+}
+.text-glow-purple {
+  text-shadow: 0 0 3px rgba(139, 0, 255, 0.75), 0 0 1px rgba(139, 0, 255, 0.4);
+}
+
+.cyber-grid {
+  background-image: linear-gradient(to right, rgba(148, 163, 184, 0.1) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(148, 163, 184, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.cyber-dot {
+  background-image: radial-gradient(rgba(148, 163, 184, 0.15) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.elegant-dot-grid {
+  background-image: radial-gradient(var(--cyber-border) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* Custom scrollbar and cursor states */
+.cursor-hover-cyan {
+  border-color: var(--ai-cyan) !important;
+  background-color: rgba(2, 132, 199, 0.1) !important;
+  width: 50px !important;
+  height: 50px !important;
+}
+
+.cursor-hover-green {
+  border-color: var(--hack-poison) !important;
+  background-color: rgba(5, 150, 105, 0.1) !important;
+  width: 50px !important;
+  height: 50px !important;
+}
+
+/* Clip paths and masks */
+.clip-hexagon {
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
+
+.noise-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+}
+
+/* Light Mode Global Mappings to prevent having to replace white text inside nested files */
+.light-mode-active {
+  background-color: var(--cyber-bg) !important;
+  color: var(--cyber-text) !important;
+}
+
+.light-mode-active .bg-\[\#020205\] {
+  background-color: var(--cyber-bg) !important;
+}
+
+.light-mode-active .bg-\[\#05050a\] {
+  background-color: var(--cyber-card) !important;
+}
+
+.light-mode-active .bg-\[\#05050a\]\/60 {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.light-mode-active .bg-\[\#05050a\]\/90 {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.light-mode-active .bg-\[\#0a0a0f\] {
+  background-color: var(--cyber-bg) !important;
+}
+
+.light-mode-active .border-\[\#1a1a2e\] {
+  border-color: var(--cyber-border) !important;
+}
+
+/* High-contrast solid overrides for text in light mode */
+.light-mode-active .text-white {
+  color: var(--cyber-text) !important;
+}
+
+.light-mode-active .text-white\/90 {
+  color: var(--cyber-text) !important;
+}
+
+.light-mode-active .text-white\/80 {
+  color: var(--cyber-text) !important;
+}
+
+.light-mode-active .text-white\/70 {
+  color: var(--cyber-text) !important;
+}
+
+.light-mode-active .text-white\/60 {
+  color: var(--cyber-muted) !important;
+}
+
+.light-mode-active .text-white\/50 {
+  color: var(--cyber-muted) !important;
+}
+
+.light-mode-active .text-white\/40 {
+  color: var(--cyber-muted) !important;
+}
+
+.light-mode-active .text-white\/30 {
+  color: var(--cyber-muted) !important;
+}
+
+.light-mode-active .text-white\/20 {
+  color: var(--cyber-muted) !important;
+}
+
+.light-mode-active .text-white\/10 {
+  color: var(--cyber-border) !important;
+}
+
+.light-mode-active .text-gray-400 {
+  color: var(--cyber-muted) !important;
+}
+
+/* High-contrast overrides for text opacity classes in dark-mode to ensure supreme legibility */
+.dark-mode .text-white\/90 {
+  color: rgba(255, 255, 255, 0.96) !important;
+}
+.dark-mode .text-white\/85 {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+.dark-mode .text-white\/80 {
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+.dark-mode .text-white\/70 {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+.dark-mode .text-white\/60 {
+  color: rgba(255, 255, 255, 0.76) !important;
+}
+.dark-mode .text-white\/50 {
+  color: rgba(255, 255, 255, 0.70) !important;
+}
+.dark-mode .text-white\/40 {
+  color: rgba(255, 255, 255, 0.62) !important;
+}
+.dark-mode .text-white\/30 {
+  color: rgba(255, 255, 255, 0.54) !important;
+}
+.dark-mode .text-white\/20 {
+  color: rgba(255, 255, 255, 0.40) !important;
+}
+.dark-mode .text-white\/10 {
+  color: rgba(255, 255, 255, 0.22) !important;
+}
+
+/* Gray/slate classes boost for dark-mode */
+.dark-mode .text-gray-400,
+.dark-mode .text-slate-400 {
+  color: #cbd5e1 !important;
+}
+.dark-mode .text-gray-500,
+.dark-mode .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+/* Semi-transparent color classes contrast boost in dark mode */
+.dark-mode .text-ai-cyan\/50 {
+  color: rgba(0, 245, 255, 0.75) !important;
+}
+.dark-mode .text-hack-poison\/50 {
+  color: rgba(57, 255, 20, 0.75) !important;
+}
+.dark-mode .text-accent-purple\/50 {
+  color: rgba(139, 0, 255, 0.75) !important;
+}
+
+/* Terminal overlay background in dark-mode */
+.dark-mode .bg-black\/50 {
+  background-color: rgba(5, 5, 10, 0.8) !important;
+  border-color: var(--cyber-border) !important;
+}
+
+.light-mode-active .text-gray-500 {
+  color: var(--cyber-muted) !important;
+}
+
+.light-mode-active .text-slate-400 {
+  color: var(--cyber-muted) !important;
+}
+
+/* Avoid invisible yellow warning colors on light backgrounds */
+.light-mode-active .text-yellow-400 {
+  color: #b45309 !important; /* Rich amber/burnt orange */
+}
+
+/* Semi-transparent grey block elements, lists, or custom card boxes */
+.light-mode-active .bg-black\/20 {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+}
+
+.light-mode-active .bg-black\/30 {
+  background-color: rgba(15, 23, 42, 0.06) !important;
+}
+
+.light-mode-active .bg-black\/50 {
+  background-color: rgba(15, 23, 42, 0.05) !important;
+}
+
+.light-mode-active .bg-black\/60 {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.light-mode-active .bg-black\/80 {
+  background-color: rgba(241, 245, 249, 0.9) !important;
+}
+
+.light-mode-active .bg-white\/5 {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+}
+
+.light-mode-active .hover\:bg-white\/5:hover {
+  background-color: rgba(15, 23, 42, 0.06) !important;
+}
+
+.light-mode-active .bg-cyber-bg\/40 {
+  background-color: rgba(248, 250, 253, 0.4) !important;
+}
+
+/* Specific elements adjustments in light-mode */
+.light-mode-active .bg-scanline {
+  opacity: 0.01 !important;
+}
+
+.light-mode-active .elegant-dot-grid {
+  background-image: radial-gradient(rgba(15, 23, 42, 0.08) 1px, transparent 1px) !important;
+  background-size: 30px 30px;
+}
+
+.light-mode-active select option {
+  background-color: var(--cyber-card) !important;
+  color: var(--cyber-text) !important;
+}
+
+.light-mode-active select {
+  color: var(--cyber-text) !important;
+}
+
+.light-mode-active header.bg-black\/70 {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(12px) !important;
+  border-color: var(--cyber-border) !important;
+}
+
+.light-mode-active .hover\:bg-white\/5:hover {
+  background-color: rgba(15, 23, 42, 0.03) !important;
+}
+
+.light-mode-active .neon-shadow-cyan {
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.08), 0 0 2px rgba(2, 132, 199, 0.1);
+}
+.light-mode-active .neon-shadow-green {
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.08), 0 0 2px rgba(5, 150, 105, 0.1);
+}
+.light-mode-active .neon-shadow-purple {
+  box-shadow: 0 4px 12px rgba(109, 40, 217, 0.08), 0 0 2px rgba(109, 40, 217, 0.1);
+}
+
+.light-mode-active .text-glow-cyan {
+  text-shadow: 0 0 4px rgba(2, 132, 199, 0.2);
+}
+.light-mode-active .text-glow-green {
+  text-shadow: 0 0 4px rgba(5, 150, 105, 0.2);
+}
+.light-mode-active .text-glow-purple {
+  text-shadow: 0 0 4px rgba(109, 40, 217, 0.2);
+}
+
+.light-mode-active .bg-cyber-card {
+  background-color: var(--cyber-card) !important;
+}
+.light-mode-active .bg-cyber-bg {
+  background-color: var(--cyber-bg) !important;
+}
+
+/* Ensure canvas overlay doesn't block */
+.light-mode-active canvas {
+  filter: contrast(1.1) brightness(1.05);
+}
+
